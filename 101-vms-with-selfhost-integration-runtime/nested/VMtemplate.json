@@ -25,6 +25,15 @@
     },
     "storageAccountName": {
       "type": "string"
+    },
+    "resourceTags": {
+        "type": "object",
+        "defaultValue": {
+            "Environment": "Dev",
+	      		"Owner" : "parun@spglobal.com",
+	      		"AppID": "03C45D5D-DB03-10D0-AD4B-C3D239961934",
+            "Name": "aws-azure-ADF"
+        }
     }
   },
   "variables": {
@@ -57,6 +66,7 @@
       "apiVersion": "2019-07-01", 
       "type": "Microsoft.Compute/virtualMachines",
       "name": "[parameters('virtualMachineName')]",
+        "tags": "[parameters('resourceTags')]",
       "location": "[parameters('existingVnetLocation')]",
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
